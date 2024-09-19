@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import CreateTeam from './components/admin/CreateTeam';
 import AdminRoleAssignment from './components/admin/AdminRoleAssignment';
+import AddPlayer from './components/admin/AddPlayer';  // Importar AddPlayer
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './services/authContext';
 import Login from './components/Login';
@@ -27,6 +28,14 @@ const App = () => {
             element={
               <ProtectedRoute allowedRoles={['admin']}>
                 <AdminRoleAssignment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add-player"
+            element={
+              <ProtectedRoute allowedRoles={['admin', 'op']}>  {/* Accesible para admins y presidentes */}
+                <AddPlayer />
               </ProtectedRoute>
             }
           />
